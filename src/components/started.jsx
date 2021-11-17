@@ -4,7 +4,10 @@ import { styled } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 
+// Utils
 import { useContext } from '../utils/context';
+
+// Component
 import Report from './report';
 
 const Input = styled("input")({
@@ -30,7 +33,7 @@ const Started = () => {
     const changeAmount = (value) => {
         if (value === "") value = 0;
         if (value < 0) value = 0;
-        if (value == NaN) value = 0;
+        if (isNaN(value)) value = 0;
         setAmount(parseInt(value));
     }
 
@@ -51,5 +54,7 @@ const Started = () => {
         </>
     )
 }
+
+Started.propTypes = {}
 
 export default Started;

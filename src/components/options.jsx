@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -33,11 +34,11 @@ const Options = ({ question, handleToggle, selected, review = false }) => {
                         key={key}
                         disablePadding
                     >
-                        <LIB role={undefined} onClick={handleToggle && handleToggle(item)} dense className={review && (selected == item || item == question.correct_answer) && ((selected == question.correct_answer || item == question.correct_answer) ? "question-correct" : "question-incorrect")}>
+                        <LIB role={undefined} onClick={handleToggle && handleToggle(item)} dense className={review && (selected === item || item === question.correct_answer) && ((selected === question.correct_answer || item === question.correct_answer) ? "question-correct" : "question-incorrect")}>
                             <ListItemIcon>
                                 <Checkbox
                                     edge="start"
-                                    checked={review ? (selected == item || item == question.correct_answer) : selected == item}
+                                    checked={selected === item || (review && item === question.correct_answer)}
                                     tabIndex={-1}
                                     disableRipple
                                 />
@@ -51,4 +52,11 @@ const Options = ({ question, handleToggle, selected, review = false }) => {
     )
 };
 
+
+Options.propTypes = {
+    question: PropTypes.object.isRequired,
+    handleToggle: PropTypes.func, 
+    selected: PropTypes.string, 
+    review: PropTypes.bool
+}
 export default Options;
